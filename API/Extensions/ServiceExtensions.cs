@@ -22,7 +22,7 @@ namespace API.Extensions
         {
             services.AddDbContext<DataBaseContext>(options =>
             {
-                //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
                 options.UseSqlServer(configuration.GetConnectionString("DataBaseContext"));
             });
         }

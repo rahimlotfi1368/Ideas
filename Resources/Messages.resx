@@ -123,6 +123,9 @@
   <data name="EmailAddressError" xml:space="preserve">
     <value>Invalide Email Format</value>
   </data>
+  <data name="Failur" xml:space="preserve">
+    <value>The Operation was Not Successfull</value>
+  </data>
   <data name="MaxFileSize" xml:space="preserve">
     <value>Maximum allowed file size is 1 MB</value>
   </data>

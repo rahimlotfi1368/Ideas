@@ -130,5 +130,84 @@ namespace API.Controllers
             }
             return new ApiResponse(BadRequest());
         }
+
+        [HttpPost("CreateNewMenu")]
+        public async Task<ApiResponse> CreateNewMenuAsync([FromBody] MenuViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _administrationService.CreateNewMenuAsync(viewModel);
+                return new ApiResponse(result);
+            }
+            return new ApiResponse(BadRequest());
+        }
+
+        [HttpPut("EditMenue/{menuId}")]
+        public async Task<ApiResponse> EditMenueAsync([FromRoute] Guid menuId, [FromBody] MenuViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _administrationService.EditeMenuAsync(menuId, viewModel);
+                return new ApiResponse(result);
+            }
+            return new ApiResponse(BadRequest());
+        }
+
+        [HttpGet("GetAllMenues")]
+        public async Task<ApiResponse> GetAllMenuesAsync()
+        {
+            var result = await _administrationService.GetAllMenuesAsync();
+            return new ApiResponse(result);
+        }
+
+        [HttpDelete("DeleteMenu/{menuId}")]
+        public async Task<ApiResponse> DeleteMenuAsync([FromRoute] Guid menuId)
+        {
+            var result = await _administrationService.DeleteMenuAsync(menuId);
+            return new ApiResponse(result);
+        }
+
+        [HttpPost("AddMenuToRole")]
+        public async Task<ApiResponse> AddMenuToRoleAsync([FromBody] MenuToRoleViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _administrationService.AddMenuToRoleAsync(viewModel);
+                return new ApiResponse(result);
+            }
+            return new ApiResponse(BadRequest());
+        }
+
+        [HttpPost("RemoveMenuFromRole")]
+        public async Task<ApiResponse> RemoveMenuFromRoleAsync([FromBody] MenuToRoleViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _administrationService.RemoveMenuFromRoleAsync(viewModel);
+                return new ApiResponse(result);
+            }
+            return new ApiResponse(BadRequest());
+        }
+
+        [HttpGet("GetAllMenuesOfRole")]
+        public async Task<ApiResponse> GetAllMenuesOfRoleAsync(string roleName)
+        {
+            var result = await _administrationService.GetAllMenuesOfRoleAsync(roleName);
+            return new ApiResponse(result);
+        }
+
+        [HttpGet("GetRolesOfMenu")]
+        public async Task<ApiResponse> GetRolesOfMenuAsync(Guid menuId)
+        {
+            var result = await _administrationService.GetRolesOfMenuAsync(menuId);
+            return new ApiResponse(result);
+        }
+
+        [HttpGet("GetRolesNotAssignedToMenu/{menuId}")]
+        public async Task<ApiResponse> GetRolesNotAssignedToMenuAsync([FromRoute] Guid menuId)
+        {
+            var result = await _administrationService.GetRolesNotAssignedToMenuAsync(menuId);
+            return new ApiResponse(result);
+        }
     }
 }

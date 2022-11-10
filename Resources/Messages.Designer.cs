@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Operation was Not Successfull.
+        /// </summary>
+        public static string Failur {
+            get {
+                return ResourceManager.GetString("Failur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum allowed file size is 1 MB.
         /// </summary>
         public static string MaxFileSize {

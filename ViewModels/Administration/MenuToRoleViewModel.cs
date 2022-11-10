@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace ViewModels.Administration
 {
-    public class MenuViewModel
+    public class MenuToRoleViewModel
     {
         [Required(ErrorMessageResourceType = typeof(Resources.Messages),
             ErrorMessageResourceName = nameof(Resources.Messages.Required))]
-        public string MenuLinkTitle { get; set; }
+        public Guid MenuId { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.Messages),
             ErrorMessageResourceName = nameof(Resources.Messages.Required))]
-        public string MenuLinkUrl { get; set; }
+        public List<string> Roles { get; set; }
     }
 }

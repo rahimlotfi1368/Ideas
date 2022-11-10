@@ -14,8 +14,8 @@ namespace Services.EFConfigurations
         {
            
             var optionsBuilder = new DbContextOptionsBuilder<DataBaseContext>();
-            optionsBuilder.UseSqlServer("Persist Security Info=True;Initial Catalog=IdeasDataBase;User Id=Mrahim;Password=799368@bank;Source=.\\MSSQLSERVER2019;");
-            //optionsBuilder.UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=IdeasDataBase;Data Source=DESKTOP-HHQAC3S\\SQL2019");
+            //optionsBuilder.UseSqlServer("Server=.\\MSSQLSERVER2019;Database=IdeasDataBase;User Id=sinuhe_1368;password=!aS75k80c;");
+            optionsBuilder.UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=IdeasDataBase;Data Source=DESKTOP-HHQAC3S\\SQL2019");
             return new DataBaseContext(optionsBuilder.Options);
         }
     }

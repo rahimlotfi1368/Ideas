@@ -23,6 +23,8 @@ namespace Services.Administration.AdministrationMapper
             CreateMap<IdentityRole,Role>();
 
             CreateMap<User, UserOutputDto>();
+
+            CreateMap<MenuViewModel, Menu>();
         }
     }
 }
