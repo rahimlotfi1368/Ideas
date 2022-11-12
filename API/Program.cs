@@ -56,6 +56,7 @@ catch (Exception ex)
     throw new Exception(ex.Message);
 }
 
+
 app.UseApiResponseAndExceptionWrapper();
 
 app.UseMyStaticFiles();
@@ -71,5 +72,7 @@ app.UseAuthorization();
 app.UseCors("CorsPolicy");
 
 app.MapControllers();
+
+app.UseOptions();
 
 app.Run();

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using API.Middlewares;
+using AutoMapper;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -86,7 +87,7 @@ namespace API.Extensions
             {
                 options.AddPolicy("CorsPolicy",
                     builder => builder.AllowAnyHeader()
-                    .WithMethods("PUT", "DELETE", "GET", "POST")
+                    .WithMethods("PUT", "DELETE", "GET", "POST","OPTIONS")
                     .AllowAnyOrigin());
 
                 //.WithOrigins("http://localhost:8080")); //front app localHost
@@ -145,6 +146,11 @@ namespace API.Extensions
             //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Images")),
             //    RequestPath = new PathString("/wwwroot/Images")
             //});
+        }
+
+        public static IApplicationBuilder UseOptions(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<OptionsMiddleware>();
         }
     }
 }
