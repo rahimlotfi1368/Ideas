@@ -90,7 +90,6 @@ namespace API.Extensions
                 options.AddPolicy("CorsPolicy",
                     builder => builder.AllowAnyHeader()
                     .WithMethods("PUT", "DELETE", "GET", "POST","OPTIONS")
-                    .WithHeaders(HeaderNames.AccessControlAllowOrigin,HeaderNames.Allow)
                     .AllowAnyOrigin());
 
                 //.WithOrigins("http://127.0.0.1:5500")); //front app localHost

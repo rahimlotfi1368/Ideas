@@ -22,6 +22,7 @@
                 context.Response.Headers.Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
                 context.Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
                 context.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
+                
                 context.Response.StatusCode = 200;
                 return context.Response.WriteAsync("OK");
             }

@@ -49,6 +49,7 @@ namespace API.Controllers
             return new ApiResponse(result);
         }
 
+        [Authorize(Roles = "Admin,Programer,Owner,GeneralUser", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPut("EditUser/{userId}")]
         public async Task<ApiResponse> EditUserAsync([FromRoute] string userId, [FromForm] EditUserViewModel viewModel)
         {
@@ -78,6 +79,7 @@ namespace API.Controllers
             return new ApiResponse(result);
         }
 
+        [Authorize(Roles = "Admin,Programer,Owner,GeneralUser", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("GetAllUsers")] 
         public async Task<ApiResponse> GetAllUsersAsync()
         {
@@ -106,6 +108,7 @@ namespace API.Controllers
             return new ApiResponse(result);
         }
 
+        [Authorize(Roles = "Admin,Programer,Owner,GeneralUser", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("GetUserById/{userId}")]
         public async Task<ApiResponse> GetUserByIdAsync([FromRoute] string userId)
         {
@@ -113,6 +116,7 @@ namespace API.Controllers
             return new ApiResponse(result);
         }
 
+        [Authorize(Roles = "Admin,Programer,Owner,GeneralUser", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("GetUserByUserName/{userName}")]
         public async Task<ApiResponse> GetUserByUserNameAsync([FromRoute] string userName)
         {
@@ -153,6 +157,7 @@ namespace API.Controllers
             return new ApiResponse(BadRequest());
         }
 
+        [Authorize(Roles = "Admin,Programer,Owner,GeneralUser", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("GetAllMenues")]
         public async Task<ApiResponse> GetAllMenuesAsync()
         {
@@ -189,6 +194,7 @@ namespace API.Controllers
             return new ApiResponse(BadRequest());
         }
 
+        [Authorize(Roles = "Admin,Programer,Owner,GeneralUser", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("GetAllMenuesOfRole")]
         public async Task<ApiResponse> GetAllMenuesOfRoleAsync(string roleName)
         {
