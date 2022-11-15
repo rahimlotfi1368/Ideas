@@ -8,6 +8,8 @@ using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.ConfigureMyCores();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.Configuredatabasecontext(builder.Configuration);
@@ -55,9 +57,9 @@ catch (Exception ex)
 {
     throw new Exception(ex.Message);
 }
+app.UseOptions();
 
-
-app.UseApiResponseAndExceptionWrapper();
+app.UseMyApiResponseAndExceptionWrapper();
 
 app.UseMyStaticFiles();
 
@@ -65,14 +67,12 @@ app.UseRouting();
 
 app.UseHttpsRedirection();
 
+app.UseCors("CorsPolicy");
+
 app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.UseCors("CorsPolicy");
-
 app.MapControllers();
-
-app.UseOptions();
 
 app.Run();

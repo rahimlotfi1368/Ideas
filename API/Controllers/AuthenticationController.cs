@@ -2,8 +2,10 @@
 using AutoWrapper.Wrappers;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Services.Authentication;
 using System.Net.WebSockets;
 using ViewModels.Authentication;
@@ -28,7 +30,7 @@ namespace API.Controllers
             if (ModelState.IsValid)
             {
                var result= await _authenticationService.LogInAsync(viewModel);
-               return new ApiResponse(result);
+                return new ApiResponse(result);
             }
 
             return new ApiResponse(BadRequest().StatusCode);

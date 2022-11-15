@@ -1,5 +1,6 @@
 ﻿using API.Middlewares;
 using AutoMapper;
+using AutoWrapper;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using Services.Administration;
 using Services.Administration.AdministrationMapper;
@@ -88,9 +90,10 @@ namespace API.Extensions
                 options.AddPolicy("CorsPolicy",
                     builder => builder.AllowAnyHeader()
                     .WithMethods("PUT", "DELETE", "GET", "POST","OPTIONS")
+                    .WithHeaders(HeaderNames.AccessControlAllowOrigin,HeaderNames.Allow)
                     .AllowAnyOrigin());
 
-                //.WithOrigins("http://localhost:8080")); //front app localHost
+                //.WithOrigins("http://127.0.0.1:5500")); //front app localHost
             });
         }
 
@@ -135,6 +138,17 @@ namespace API.Extensions
             app.UseSwagger();
 
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ideas.Api v1"));
+        }
+
+        public static void UseMyApiResponseAndExceptionWrapper(this IApplicationBuilder app)
+        {
+            app.UseApiResponseAndExceptionWrapper(new AutoWrapperOptions
+            {
+                IsDebug = true,
+                IsApiOnly = false,
+                WrapWhenApiPathStartsWith = "/swagger/index.html"
+            });
+
         }
 
         public static void UseMyStaticFiles(this IApplicationBuilder app)
