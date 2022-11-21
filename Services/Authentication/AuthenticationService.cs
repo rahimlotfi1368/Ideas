@@ -35,16 +35,33 @@ namespace Services.Authentication
             
             var user=await _userManager.FindByNameAsync(loginInput.UserName);
 
+            if (user==null)
+            {
+                return new LoginOutPutDto()
+                {
+                    Status = false,
+                    Token = string.Empty,
+                    UserId = string.Empty,
+                    Username = string.Empty,
+                    Roles=null
+                };
+            }
+
+            
             var result =await _signInManager.PasswordSignInAsync
                     (loginInput.UserName, loginInput.Password, loginInput.RememberMe, false);
 
             if (result.Succeeded)
             {
-                
+                var userRoles =await _userManager.GetRolesAsync(user);
+
                 return new LoginOutPutDto()
                 {
                     Status = result.Succeeded,
-                    Token = await GenerateJWTTokenAsync(user)
+                    Token = await GenerateJWTTokenAsync(user),
+                    UserId = user.Id,
+                    Username= user.UserName,
+                    Roles=userRoles
                 };
             }
             else
@@ -52,7 +69,10 @@ namespace Services.Authentication
                 return new LoginOutPutDto()
                 {
                     Status = result.Succeeded,
-                    Token = string.Empty
+                    Token = string.Empty,
+                    UserId = string.Empty,
+                    Username = string.Empty,
+                    Roles = null
                 };
             }
 

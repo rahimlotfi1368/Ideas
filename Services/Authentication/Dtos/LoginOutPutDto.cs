@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services.Administration.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,8 @@ namespace Services.Authentication.Dtos
     {
         public string Token { get; set; }
         public bool Status { get; set; }
+        public string UserId { get; set; }
+        public string Username { get; set; }
+        public IList<string>? Roles { get; set; }
     }
 }
