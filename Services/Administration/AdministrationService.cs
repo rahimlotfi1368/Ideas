@@ -270,7 +270,8 @@ namespace Services.Administration
                 user.DisplayName=userInput.DisplayName;
                 user.Email=userInput.Email;
                 user.PhoneNumber=userInput.PhoneNumber;
-                user.ProfileImage = Utilites.UploadFile(userInput.Images, userId).FileUrl;
+                user.Bio=userInput.Bio;
+                if (userInput.Images != null) user.ProfileImage = Utilites.UploadFile(userInput.Images, userId).FileUrl  ;
                 var result = await _userManager.UpdateAsync(user);
 
                 if (result.Succeeded)

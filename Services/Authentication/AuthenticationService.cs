@@ -45,9 +45,8 @@ namespace Services.Authentication
                     Username = string.Empty,
                     Roles=null
                 };
-            }
+            } 
 
-            
             var result =await _signInManager.PasswordSignInAsync
                     (loginInput.UserName, loginInput.Password, loginInput.RememberMe, false);
 
